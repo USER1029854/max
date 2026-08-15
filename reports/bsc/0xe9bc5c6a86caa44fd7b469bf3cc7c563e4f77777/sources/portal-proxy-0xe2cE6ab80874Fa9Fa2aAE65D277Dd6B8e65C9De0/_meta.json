@@ -1,0 +1,16 @@
+{
+  "ContractName": "TransparentUpgradeableProxy",
+  "CompilerVersion": "v0.8.24+commit.e11b9ed9",
+  "CompilerType": "solc-j",
+  "OptimizationUsed": "1",
+  "Runs": "200000000",
+  "ConstructorArguments": "000000000000000000000000225894eadeabbba41ecdfd88a3ef88aa0af31d44000000000000000000000000b2480c2d17bf4510701c4def374de6d22e039bd400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000024c4d66de80000000000000000000000008187f13ed6c7c9554afe4dd4c4d496017484606300000000000000000000000000000000000000000000000000000000",
+  "EVMVersion": "london",
+  "Library": "",
+  "ContractFileName": "lib/openzeppelin-contracts/contracts/proxy/transparent/TransparentUpgradeableProxy.sol",
+  "LicenseType": "MIT",
+  "Proxy": "1",
+  "Implementation": "0x153378bbfa36411d34c20862725223e11665b74f",
+  "SwarmSource": "ipfs://23c4ba31fe2e89bbe1edb638289a455527727dd65a067681f4cb19c75bae5bdd",
+  "SimilarMatch": ""
+}

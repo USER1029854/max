@@ -1,0 +1,16 @@
+{
+  "ContractName": "TaxProcessorUniV2",
+  "CompilerVersion": "v0.8.26+commit.8a97fa7a",
+  "CompilerType": "solc-j",
+  "OptimizationUsed": "1",
+  "Runs": "99999",
+  "ConstructorArguments": "",
+  "EVMVersion": "cancun",
+  "Library": "",
+  "ContractFileName": "src/Tax/TaxProcessorUniV2.sol",
+  "LicenseType": "MIT",
+  "SwarmSource": "ipfs://6edb6567f9cc2c803435cdba9426a9c62abf69e5487f6ca7ffb61d03ed229431",
+  "SimilarMatch": "0x58d64a7121C50dE2dE00d5Bb8823f8157b657003",
+  "Proxy": "0",
+  "Implementation": ""
+}

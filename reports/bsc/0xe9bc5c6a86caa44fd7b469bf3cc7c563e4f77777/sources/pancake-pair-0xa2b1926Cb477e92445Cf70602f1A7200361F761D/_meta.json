@@ -1,0 +1,16 @@
+{
+  "ContractName": "PancakePair",
+  "CompilerVersion": "v0.5.16+commit.9c3226ce",
+  "CompilerType": "solc",
+  "OptimizationUsed": "0",
+  "Runs": "200",
+  "ConstructorArguments": "",
+  "EVMVersion": "Default",
+  "Library": "",
+  "ContractFileName": "",
+  "LicenseType": "MIT",
+  "Proxy": "0",
+  "Implementation": "",
+  "SwarmSource": "bzzr://4c647542259e471353892c1bc85f3bd97626f8162e3134e910684c65f3f4f2ca",
+  "SimilarMatch": "0x804678fa97d91b974ec2af3c843270886528a9e6"
+}

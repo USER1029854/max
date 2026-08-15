@@ -1,0 +1,16 @@
+{
+  "ContractName": "SafeProxy",
+  "CompilerVersion": "v0.7.6+commit.7338295f",
+  "CompilerType": "solc-j",
+  "OptimizationUsed": "0",
+  "Runs": "200",
+  "ConstructorArguments": "",
+  "EVMVersion": "Default",
+  "Library": "",
+  "ContractFileName": "contracts/proxies/SafeProxy.sol",
+  "LicenseType": "",
+  "Proxy": "1",
+  "Implementation": "0x29fcb43b46531bca003ddc8fcb67ffe91900c762",
+  "SwarmSource": "",
+  "SimilarMatch": "0x67161d9ad1478ae44b35d24985f2d7c4cb88f61a"
+}

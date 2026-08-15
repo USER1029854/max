@@ -1,0 +1,16 @@
+{
+  "ContractName": "WBNB",
+  "CompilerVersion": "v0.4.18+commit.9cf6e910",
+  "CompilerType": "solc",
+  "OptimizationUsed": "0",
+  "Runs": "200",
+  "ConstructorArguments": "",
+  "EVMVersion": "Default",
+  "Library": "",
+  "ContractFileName": "",
+  "LicenseType": "GNU GPLv3",
+  "Proxy": "0",
+  "Implementation": "",
+  "SwarmSource": "bzzr://bcf3db16903185450bc04cb54da92f216e96710cce101fd2b4b47d5b70dc11e0",
+  "SimilarMatch": ""
+}

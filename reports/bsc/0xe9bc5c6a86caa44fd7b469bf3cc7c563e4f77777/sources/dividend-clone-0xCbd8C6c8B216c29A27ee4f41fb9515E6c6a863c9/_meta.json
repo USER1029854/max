@@ -1,0 +1,16 @@
+{
+  "ContractName": "Dividend",
+  "CompilerVersion": "v0.8.26+commit.8a97fa7a",
+  "CompilerType": "solc-j",
+  "OptimizationUsed": "1",
+  "Runs": "99999",
+  "ConstructorArguments": "",
+  "EVMVersion": "cancun",
+  "Library": "",
+  "ContractFileName": "src/Tax/Dividend.sol",
+  "LicenseType": "MIT",
+  "Proxy": "0",
+  "Implementation": "",
+  "SwarmSource": "ipfs://e813fa9c6960854ae3e5a8a2a8f25c7ef5ecf00d4a4dab5325a563f89df605d6",
+  "SimilarMatch": "0x0BFa35E8E5a467C002Fd5F0f692b362f4fdFB56a"
+}

@@ -1,0 +1,16 @@
+{
+  "ContractName": "FlapBlackHole",
+  "CompilerVersion": "v0.8.24+commit.e11b9ed9",
+  "CompilerType": "solc-j",
+  "OptimizationUsed": "1",
+  "Runs": "99999",
+  "ConstructorArguments": "0000000000000000000000008a08d98cbb218fceb318ecf3abc1ba43d8a7ab0e",
+  "EVMVersion": "london",
+  "Library": "",
+  "ContractFileName": "src/tools/FlapBlackHole.sol",
+  "LicenseType": "MIT",
+  "Proxy": "0",
+  "Implementation": "",
+  "SwarmSource": "ipfs://89d54ca0304306666cd0bdbcf194dc600f6c52bc7c83d0414018c9b1f86f53c6",
+  "SimilarMatch": ""
+}

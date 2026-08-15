@@ -1,0 +1,16 @@
+{
+  "ContractName": "GnosisSafeL2",
+  "CompilerVersion": "v0.7.6+commit.7338295f",
+  "CompilerType": "solc-j",
+  "OptimizationUsed": "0",
+  "Runs": "200",
+  "ConstructorArguments": "",
+  "EVMVersion": "Default",
+  "Library": "",
+  "ContractFileName": "contracts/GnosisSafeL2.sol",
+  "LicenseType": "GNU LGPLv3",
+  "Proxy": "1",
+  "Implementation": "0x9c28a2483901018216282216bc47cb699ca2d57f",
+  "SwarmSource": "",
+  "SimilarMatch": ""
+}

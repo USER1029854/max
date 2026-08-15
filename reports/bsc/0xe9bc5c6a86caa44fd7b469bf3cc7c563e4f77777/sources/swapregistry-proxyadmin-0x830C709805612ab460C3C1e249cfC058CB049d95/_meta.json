@@ -1,0 +1,16 @@
+{
+  "ContractName": "ProxyAdmin",
+  "CompilerVersion": "v0.8.24+commit.e11b9ed9",
+  "CompilerType": "solc-j",
+  "OptimizationUsed": "1",
+  "Runs": "99999",
+  "ConstructorArguments": "",
+  "EVMVersion": "cancun",
+  "Library": "",
+  "ContractFileName": "lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol",
+  "LicenseType": "None",
+  "Proxy": "0",
+  "Implementation": "",
+  "SwarmSource": "ipfs://afeffa8264cbfeb597d524b34285b325a4dabc030f5835aae835ff2e2afd13b1",
+  "SimilarMatch": "0x3D5A3636a9Abfd6d8Feadc22d5345C5c9a6480E4"
+}
