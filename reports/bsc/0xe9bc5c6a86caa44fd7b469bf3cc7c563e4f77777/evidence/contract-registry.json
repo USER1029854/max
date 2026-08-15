@@ -1,0 +1,62 @@
+{
+  "generated": "2026-08-15",
+  "chain": "BNB Smart Chain (56)",
+  "target": {
+    "label": "Token under audit (\"Max\" / \"Giggle Mascot\")",
+    "address": "0xe9Bc5C6A86caA44fD7b469bf3cc7c563E4F77777",
+    "type": "EIP-1167 minimal proxy clone",
+    "logic_contract": "FlapTaxTokenV3",
+    "verified": true,
+    "notes": "owner() currently returns address(0) - ownership renounced. No setter exists in this contract for buy/sell tax rate after initialize()."
+  },
+  "nodes": [
+    {"role": "target-implementation", "name": "FlapTaxTokenV3 implementation", "address": "0x024f18294970b5c76c0691b87f138a0317156422", "verified": true, "note": "Bytecode/ABI match clone exactly. Constructor calls _disableInitializers()."},
+    {"role": "downstream", "name": "WBNB (quoteToken)", "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", "verified": true, "note": "Confirmed genuine via router.WETH() exact match."},
+    {"role": "downstream", "name": "PancakeSwap V2 Pair (mainPool)", "address": "0xa2b1926Cb477e92445Cf70602f1A7200361F761D", "verified": true, "note": "factory()/getPair() cross-checked; reserves == actual on-chain balances exactly; LP 99.99% burned to 0x...dEaD."},
+    {"role": "downstream", "name": "PancakeSwap V2 Router", "address": "0x10ED43C718714eb63d5aA57B78B54704E256024e", "verified": true, "note": "ContractName=PancakeRouter, standard 24-fn interface, self-consistent factory chain, DexScreener corroborates dexId=pancakeswap."},
+    {"role": "downstream-derived", "name": "PancakeSwap V2 Factory (derived from router.factory()/pair.factory())", "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", "verified": "not independently source-fetched", "note": "Both router.factory() and pair.factory() agree on this address; factory.getPair(token,wbnb) returns the given pair exactly."},
+    {"role": "downstream", "name": "TaxProcessorUniV2 (taxProcessor)", "address": "0xD0e4Bd493D25b7E53Fa8531e6dbC808Da549A2f1", "type": "EIP-1167 clone", "verified": true, "note": "Receives an unlimited standing ERC20 approval from the token, auto-renewed each liquidation. Bounded to whatever tax balance sits on the token contract at a given moment."},
+    {"role": "downstream", "name": "TaxProcessorUniV2 implementation", "address": "0x28aff2817dc5b17de15194ac2861a9caa8307ae4", "verified": true},
+    {"role": "downstream", "name": "Dividend (dividendContract)", "address": "0xCbd8C6c8B216c29A27ee4f41fb9515E6c6a863c9", "type": "EIP-1167 clone", "verified": true, "note": "setShare() is called on every qualifying transfer; a revert here reverts the whole transfer -> soft veto power over transferability."},
+    {"role": "downstream", "name": "Dividend implementation", "address": "0x0116f1e42977eccdfd926fef688c6a7d289dea65", "verified": true},
+    {"role": "downstream", "name": "taxProcessor.flapBlackHole", "address": "0x000000000000000000000000000000000000dEaD", "verified": "n/a - standard burn address, not a contract"},
+    {"role": "downstream", "name": "dividend.flapBlackHole (FlapBlackHole)", "address": "0x00576E4Fb32296Cd973A0d413D0379609400DEad", "verified": true, "note": "AccessControl; eradicate(token) is BURNER_ROLE-gated and unconditionally forwards balance to 0x...dEaD. Current BURNER_ROLE/DEFAULT_ADMIN_ROLE holders NOT identified (gap)."},
+    {"role": "downstream", "name": "swapRegistry (proxy shell)", "address": "0x644A8f560138418bAD4EdEFC7c17878a3c2fBEB6", "type": "TransparentUpgradeableProxy", "verified": true, "note": "Referenced by taxProcessor as an immutable; not actively exercised right now (converter=0)."},
+    {"role": "downstream", "name": "swapRegistry implementation", "address": "0x9a681bC1350636BBf81085207cde7485dAa67a65", "verified": false, "note": "GAP: unverified bytecode, source not available."},
+    {"role": "downstream", "name": "swapRegistry ProxyAdmin", "address": "0x830C709805612ab460C3C1e249cfC058CB049d95", "verified": true, "note": "Standard OZ ProxyAdmin."},
+    {"role": "upstream-power", "name": "swapRegistry ProxyAdmin owner", "address": "0x8187F13ed6C7C9554AfE4Dd4C4D4960174846063", "type": "EOA", "verified": "n/a", "note": "RISK: single private key, not a multisig, can upgrade swapRegistry's implementation to arbitrary logic at any time. Does not overlap with the identified 4/5/8-signer Safe groups."},
+    {"role": "downstream", "name": "taxProcessor ADMIN_IMPL facet", "address": "0xa56B1cb37947A659CC0b5c5BbE48D44Fc31837b2", "verified": false, "note": "GAP at this specific address (Etherscan shows unverified), but a contract literally named TaxProcessorAdminImpl (onlyOwner-gated setWalletConfig/setReceivers/setTaxConfig/setFeeRate/setCommissionConfig/setDividendToken/setConverter/withdrawAll/etc.) is present in the verified TaxProcessorUniV2 source bundle - very likely (not certified) what's deployed here."},
+    {"role": "downstream", "name": "taxProcessor DISPATCH_IMPL facet", "address": "0xAb8FF2bd20B8eDF958Adf9c373f0d78b8B3bFfb0", "verified": false, "note": "GAP at this specific address, but TaxProcessorV2DispatchImpl.executeDispatch is present in the same verified bundle - likely (not certified) match."},
+    {"role": "upstream-power", "name": "Portal (proxy)", "address": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0", "type": "TransparentUpgradeableProxy", "verified": true, "note": "owner() of BOTH taxProcessor and dividendContract; taxProcessor.portal() also points here. Never referenced by the token's own code."},
+    {"role": "upstream-power", "name": "Portal implementation", "address": "0x153378bbfa36411d34c20862725223E11665b74f", "verified": true, "note": "~1400-line contract, dozens of admin functions incl. updateTaxTokenAddresses, changeMarketWallet, setTokenDividendToken, recoverStuckTaxProcessor(*), recoverStuckDividend, halt(). AccessControl-based (GUARDIAN_ROLE/MANAGE_ROLE/MODERATOR_ROLE/TOKEN_FLAP_FEE_SETTER_ROLE/DEFAULT_ADMIN_ROLE)."},
+    {"role": "upstream-power-unresolved", "name": "PORTAL_TWEAK facet", "address": "UNKNOWN - internal immutable, no public getter", "verified": false, "note": "GAP, high importance: this is where updateTaxTokenAddresses/changeMarketWallet/setTokenDividendToken/setTaxTokenDividendReceiver/setTaxTokenDividendKeeper/recoverStuckTaxProcessor(ToTaxToken)/recoverStuckDividend/recoverStuckTaxToken/burnStuckTaxToken/setFeeExemption/setTokenMaxBuyBps/setSpammerBlockedBatch/excludeAddressFromDividends/retuneTaxThresholds actually execute (Portal.sol itself just delegatecalls to it with no source in the downloaded bundle for what it delegates to)."},
+    {"role": "upstream-power", "name": "Portal ProxyAdmin", "address": "0xB2480c2D17BF4510701c4Def374DE6d22E039bD4", "verified": true},
+    {"role": "upstream-power", "name": "Portal ProxyAdmin owner = Portal DEFAULT_ADMIN_ROLE holder (\"master Safe\")", "address": "0x1f96BC88f0794060433Be5F3EC9159a9C4f08A3b", "type": "Gnosis Safe", "verified": true, "note": "3-of-4 multisig, Safe v1.4.1, nonce=76 (actively used). Can upgrade Portal's logic to ANYTHING via ProxyAdmin.upgrade(). Owners: 0xA85c06f58B6A2F1BF577B15F20F4AA66D8a334Ec, 0x29a64981d327c2B4893F1bB84aa9A6266EFBb491, 0x01db37579E55cE13f4504019025e36047bDaD845, 0x705163Cf642a975d2F0570463BE93AAb7993D1c2. Shares 3 of 4 signers with the feeReceiver Safe."},
+    {"role": "upstream-power", "name": "feeReceiver", "address": "0x8a08D98CBB218fceB318Ecf3aBc1BA43D8A7aB0E", "type": "Gnosis Safe (GnosisSafeProxy v1.3.0)", "verified": true, "note": "3-of-4 multisig, nonce=203. Owners: 0x29a64981d327c2B4893F1bB84aa9A6266EFBb491, 0xA85c06f58B6A2F1BF577B15F20F4AA66D8a334Ec, 0x01db37579E55cE13f4504019025e36047bDaD845, 0xd8B61d3c1fe630d1a827256231c14bd61B0d4Ad5. 3 of 4 signers identical to the master Safe."},
+    {"role": "upstream-power", "name": "marketAddress", "address": "0xC7f501D25Ea088aeFCa8B4b3ebD936aAe12bF4A4", "type": "Gnosis Safe (SafeProxy v1.4.1)", "verified": true, "note": "2-of-5 multisig (weaker threshold than the other two Safes), nonce=108. Also directly holds 5% of total token supply outright (independent of ongoing tax flow). Owners: 0x636576F6616981169c614a7F17c4AD6a2F976629, 0xABeE3801B68C478Cc0A4B79D3BE499a5644e7B2b, 0xf4Ea8179a7b9eBb175DAB5e23D0B0D79E7976eFe, 0x478c909A5Ea6f75fdAb28Ee099791992b20864C8, 0xc5F2D3827ebf825ceD8446F4425f24620E3de47F. No overlap with the other two Safes' signer sets."},
+    {"role": "context", "name": "token creator/deployer EOA (GoPlus creator_address)", "address": "0x182c13150CE95D3b90A6fcc3259f4Dc8Ef8A4f58", "type": "EOA", "verified": "n/a", "note": "Holds ~0.86% of supply. No on-chain privileged role found (tested against all identified Portal AccessControl roles - all false)."}
+  ],
+  "portal_roles": {
+    "DEFAULT_ADMIN_ROLE": {"id": "0x0000000000000000000000000000000000000000000000000000000000000000", "holder_confirmed": "0x1f96BC88f0794060433Be5F3EC9159a9C4f08A3b (master Safe, 3/4)"},
+    "GUARDIAN_ROLE": {"id": "0x55435dd261a4b9b3364963f7738a7a662ad9c84396d64be3365284bb7f0a5041", "holder_confirmed": null, "note": "can call halt(). Holder not identified - gap."},
+    "MANAGE_ROLE": {"id": "0xa076a07f65bcd51bcb15a0f01a65bc18f2d922acb81bcfd8af4caf5adb557091", "holder_confirmed": null, "note": "Holder not identified - gap."},
+    "MODERATOR_ROLE": {"id": "0x71f3d55856e4058ed06ee057d79ada615f65cdf5f9ee88181b914225088f834f", "holder_confirmed": null, "note": "Holder not identified - gap."},
+    "TOKEN_FLAP_FEE_SETTER_ROLE": {"id": "0xfd80616bbbf4531d5e991bc3cdb7a409f80d9d5c1d2eadd276bd7c02087903f4", "holder_confirmed": null, "note": "Holder not identified - gap."}
+  },
+  "live_state_snapshot": {
+    "as_of": "2026-08-15 (block ~116,122,699)",
+    "name": "Giggle Mascot", "symbol": "Max", "decimals": 18,
+    "totalSupply": "1,000,000,000 (= maxSupply, fully minted at initialize, no mint function exists post-init)",
+    "owner": "0x0000000000000000000000000000000000000000 (renounced)",
+    "poolState": "TaxEnforcedAntiFarmer (state 2 of 5)",
+    "buyTaxRate_bps": 300, "sellTaxRate_bps": 300,
+    "antiFarmerExpirationTime_utc": "2026-08-31T07:50:02Z (tax scope narrows from ALL pools to mainPool-only after this)",
+    "taxExpirationTime_utc": "2126-07-08T07:50:02Z (~99.9 years from finalizeMigration - tax is effectively permanent for any realistic horizon)",
+    "liquidationThreshold_tokens": "392,040 (of START/MIN range 400,000 / 50,000)",
+    "pair_liquidity_usd_dexscreener": 129367.08,
+    "pair_reserves_vs_actual_balance_diff": 0,
+    "lp_burned_pct": "99.99% (to 0x...dEaD)",
+    "holder_count_goplus": 2475,
+    "is_mintable": false, "is_honeypot_flags": "cannot_buy=0, cannot_sell_all=0 (per GoPlus)"
+  }
+}

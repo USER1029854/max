@@ -1,0 +1,72 @@
+{
+  "gnosis_safes": {
+    "feeReceiver": {
+      "address": "0x8a08D98CBB218fceB318Ecf3aBc1BA43D8A7aB0E",
+      "owners": [
+        "0x29a64981d327c2b4893f1bb84aa9a6266efbb491",
+        "0xa85c06f58b6a2f1bf577b15f20f4aa66d8a334ec",
+        "0x01db37579e55ce13f4504019025e36047bdad845",
+        "0xd8b61d3c1fe630d1a827256231c14bd61b0d4ad5"
+      ],
+      "threshold": 3,
+      "nonce": 203,
+      "version": "1.3.0"
+    },
+    "marketAddress": {
+      "address": "0xC7f501D25Ea088aeFCa8B4b3ebD936aAe12bF4A4",
+      "owners": [
+        "0x636576f6616981169c614a7f17c4ad6a2f976629",
+        "0xabee3801b68c478cc0a4b79d3be499a5644e7b2b",
+        "0xf4ea8179a7b9ebb175dab5e23d0b0d79e7976efe",
+        "0x478c909a5ea6f75fdab28ee099791992b20864c8",
+        "0xc5f2d3827ebf825ced8446f4425f24620e3de47f"
+      ],
+      "threshold": 2,
+      "nonce": 108,
+      "version": "1.4.1"
+    },
+    "master_portal_admin_safe": {
+      "address": "0x1f96BC88f0794060433Be5F3EC9159a9C4f08A3b",
+      "owners": [
+        "0xa85c06f58b6a2f1bf577b15f20f4aa66d8a334ec",
+        "0x29a64981d327c2b4893f1bb84aa9a6266efbb491",
+        "0x01db37579e55ce13f4504019025e36047bdad845",
+        "0x705163cf642a975d2f0570463be93aab7993d1c2"
+      ],
+      "threshold": 3,
+      "nonce": 76,
+      "version": "1.4.1"
+    }
+  },
+  "proxies": {
+    "portal_owner": {
+      "proxy": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+      "implementation": "0x153378bbfa36411d34c20862725223e11665b74f",
+      "admin": "0xb2480c2d17bf4510701c4def374de6d22e039bd4"
+    },
+    "swapRegistry": {
+      "proxy": "0x644A8f560138418bAD4EdEFC7c17878a3c2fBEB6",
+      "implementation": "0x9a681bc1350636bbf81085207cde7485daa67a65",
+      "admin": "0x830c709805612ab460c3c1e249cfc058cb049d95"
+    }
+  },
+  "proxy_admin_owners": {
+    "portal_proxyadmin": {
+      "proxyadmin": "0xB2480c2D17BF4510701c4Def374DE6d22E039bD4",
+      "owner": "0x1f96bc88f0794060433be5f3ec9159a9c4f08a3b",
+      "owner_is_contract": true
+    },
+    "swapRegistry_proxyadmin": {
+      "proxyadmin": "0x830C709805612ab460C3C1e249cfC058CB049d95",
+      "owner": "0x8187f13ed6c7c9554afe4dd4c4d4960174846063",
+      "owner_is_contract": false
+    }
+  },
+  "portal_access_control_role_ids": {
+    "DEFAULT_ADMIN_ROLE()": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "GUARDIAN_ROLE()": "0x55435dd261a4b9b3364963f7738a7a662ad9c84396d64be3365284bb7f0a5041",
+    "MANAGE_ROLE()": "0xa076a07f65bcd51bcb15a0f01a65bc18f2d922acb81bcfd8af4caf5adb557091",
+    "MODERATOR_ROLE()": "0x71f3d55856e4058ed06ee057d79ada615f65cdf5f9ee88181b914225088f834f",
+    "TOKEN_FLAP_FEE_SETTER_ROLE()": "0xfd80616bbbf4531d5e991bc3cdb7a409f80d9d5c1d2eadd276bd7c02087903f4"
+  }
+}
